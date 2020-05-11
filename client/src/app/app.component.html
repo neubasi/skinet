@@ -1,0 +1,34 @@
+<h1>Welcome to {{title}}</h1>
+
+<i class="fa fa-car"></i>
+<i class="fa fa-car" style="font-size:48px;"></i>
+<i class="fa fa-car" style="font-size:60px;color:red;"></i>
+
+
+<div class="btn-group btn-group-toggle">
+    <label class="btn-primary" ngbButtonLabel>
+      <input type="checkbox" ngbButton [(ngModel)]="model.left"> Left (pre-checked)
+    </label>
+    <label class="btn-primary" ngbButtonLabel>
+      <input type="checkbox" ngbButton [(ngModel)]="model.middle"> Middle
+    </label>
+    <label class="btn-primary" ngbButtonLabel>
+      <input type="checkbox" ngbButton [(ngModel)]="model.right"> Right
+    </label>
+  </div>
+  <hr>
+  <pre>{{model | json}}</pre>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+        One of three columns
+      </div>
+      <div class="col-sm">
+        One of three columns
+      </div>
+      <div class="col-sm">
+        One of three columns
+      </div>
+    </div>
+  </div>

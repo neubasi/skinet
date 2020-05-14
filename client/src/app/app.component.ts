@@ -8,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'client';
  
+  progress = 0;
+  counter = 0;
 
   constructor() {}
 
   ngOnInit(): void {
-  }
+   // 
+ 
+  
+  //  
+  
+}
 }

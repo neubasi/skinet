@@ -11,7 +11,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     constructor(private router: Router, private toastService: ToastService) { }
 
     intercept(req: HttpRequest<any>,
-        next: HttpHandler):
+              next: HttpHandler):
         Observable<HttpEvent<any>> {
         return next.handle(req).pipe(
            // delay(1000),

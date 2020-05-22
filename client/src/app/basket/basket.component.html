@@ -1,4 +1,4 @@
-<div class="container mt-2">
+<div class="container mt-1">
     <div *ngIf="(basket$ | async) ===null">
         <p>There are not items in your basket.</p>
     </div>
@@ -6,7 +6,7 @@
         <div class="pb-5">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 py-5 mb-1">
+                    <div class="col-12 py-3 mb-1">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
@@ -49,14 +49,14 @@
                                         <td class="align-middle"><strong>{{item.price | currency}}</strong></td>
                                         <td class="align-middle">
                                             <div class="d-flex align-items-center">
-                                                <i (click)="decrementItemQuantity(item)"
-                                                    class="fa fa-minus-circle text-warning mr-2"
-                                                    style="cursor: pointer; font-size:2em"></i>
+                                                <span class="font-weight-bold" (click)="decrementItemQuantity(item)"
+                                                    class="mr-3"
+                                                    style="cursor: pointer; font-size:1.5em;font-weight: 800;">-</span>
                                                 <span class="font-weight-bold"
-                                                    style="font-size: 1.5em">{{item.quantity}}</span>
-                                                <i (click)="incrementItemQuantity(item)"
-                                                    class="fa fa-plus-circle text-warning mx-2"
-                                                    style="cursor: pointer; font-size:2em"></i>
+                                                    style="font-size: 1.2em">{{item.quantity}}</span>
+                                                <span (click)="incrementItemQuantity(item)"
+                                                    class="mx-3"
+                                                    style="cursor: pointer; font-size:1.3em;font-weight: 800;">+</span>
                                             </div>
                                         </td>
                                         <td class="align-middle">
@@ -64,7 +64,7 @@
                                         <td class="align-middle text center">
                                             <a class="text-danger">
                                                 <i (click)="removeBasketItem(item)" class="fa fa-trash"
-                                                    style="cursor: pointer;font-size: 2em"></i>
+                                                    style="cursor: pointer;font-size: 2em;"></i>
                                             </a>
                                         </td>
                                     </tr>

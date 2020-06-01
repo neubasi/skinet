@@ -16,7 +16,7 @@ a {
     color: #343a40;
 
     &.active {
-        color:orange;
+        color: orange;
     }
 }
 
@@ -26,4 +26,8 @@ a {
     &:focus {
         outline: none;
     }
+}
+
+.dropdown-item:hover {
+    color:white;
 }

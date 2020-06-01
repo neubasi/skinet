@@ -4,14 +4,24 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PagingHeaderComponent } from './components/paging-header/paging-header.component';
 import { PagerComponent } from './components/pager/pager.component';
 import { OrderTotalsComponent } from './components/order-totals/order-totals.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [PagingHeaderComponent, PagerComponent, OrderTotalsComponent],
+  declarations: [
+    PagingHeaderComponent,
+    PagerComponent,
+    OrderTotalsComponent],
   imports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
-  exports: [NgbModule, PagingHeaderComponent, PagerComponent, OrderTotalsComponent]
+  exports: [
+    NgbModule,
+    PagingHeaderComponent,
+    PagerComponent,
+    OrderTotalsComponent,
+    ReactiveFormsModule]
 })
 export class SharedModule { }

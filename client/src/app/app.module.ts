@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from './core/core.module';
-import { HomeModule } from './home/home.module';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import {NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
@@ -24,7 +23,6 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     FormsModule,
     HttpClientModule,
     CoreModule,
-    HomeModule,
     NgxSpinnerModule,
     BrowserAnimationsModule
   ],

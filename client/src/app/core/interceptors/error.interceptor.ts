@@ -18,6 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             catchError(error => {
                 if (error) {
                     if (error.status === 400) {
+                        this.toastService.show('WARNING ### 400 ERROR', { classname: 'bg-danger text-light', delay: 3000 });
                         if (error.error.errors) {
                             throw error.error;
                         } else {

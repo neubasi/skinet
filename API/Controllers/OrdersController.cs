@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -29,23 +30,34 @@ namespace API.Controllers
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
 
-            var address = _mapper.Map<AdressDto, Address>(orderDto.ShipToAddress);
+            var address = _mapper.Map<AddressDto, Address>(orderDto.ShipToAddress);
 
             var order = await _orderService.CreateOrderAsync(email, orderDto.DeliveryMethodId, orderDto.BasketId, address);
 
-            if(order == null) return BadRequest(new ApiResponse(400,"Problem creating order"));
+            if (order == null) return BadRequest(new ApiResponse(400, "Problem creating order"));
 
             return Ok(order);
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<OrderDto>>> GetOrdersForUser()
+        public async Task<ActionResult<IReadOnlyList<OrderToReturnDto>>> GetOrdersForUser()
         {
             var email = HttpContext.User.RetrieveEmailFromPrincipal();
 
-            var orders = await _orderService.GetOrderForUserAsync(email);
+            var orders = await _orderService.GetOrdersForUserAsync(email);
+
+           // Console.Write("SIMON NEUBAUER", orders);
+
+           // var data = _mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders);
+
+            Console.Write("----------------------------");
+              Console.Write("SIMON NEUBAUER");
+           // Console.Write(data);
+            Console.Write("----------------------------");
 
             return Ok(_mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders));
+
+            // return Ok(_mapper.Map<IReadOnlyList<Order>, IReadOnlyList<OrderToReturnDto>>(orders));
         }
 
         [HttpGet("{id}")]
@@ -55,7 +67,7 @@ namespace API.Controllers
 
             var order = await _orderService.GetOrderByIdAsync(id, email);
 
-            if(order == null) return NotFound(new ApiResponse(404));
+            if (order == null) return NotFound(new ApiResponse(404));
 
             return _mapper.Map<Order, OrderToReturnDto>(order);
         }
@@ -63,8 +75,8 @@ namespace API.Controllers
         [HttpGet("deliveryMethod")]
         public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
         {
-            return Ok(await _orderService.GetDeliveryMethodAsync());
+            return Ok(await _orderService.GetDeliveryMethodsAsync());
         }
-        
+
     }
 }

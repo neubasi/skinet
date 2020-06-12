@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace API.Dtos
 {
-    public class AdressDto
+    public class AddressDto
     {
         [Required]
         public string FirstName { get; set; }

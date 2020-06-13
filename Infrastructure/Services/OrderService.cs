@@ -38,20 +38,23 @@ namespace Infrastructure.Services
             // get the delivery method from repo
             var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
 
+            // behebt Bug, wenn client keine delivery sendet
+            if (deliveryMethod == null) return null;
+
             // calc subtotal
             var subtotal = items.Sum(item => item.Price * item.Quantity);
 
             // create order
             var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal);
-             _unitOfWork.Repository<Order>().Add(order);
+            _unitOfWork.Repository<Order>().Add(order);
 
             // save to db
-           var result = await _unitOfWork.Complete();
+            var result = await _unitOfWork.Complete();
 
-           if(result <= 0) return null;
+            if (result <= 0) return null;
 
-           // delete basket
-           await _basketRepo.DeleteBasketAsync(basketId);
+            // delete basket
+            await _basketRepo.DeleteBasketAsync(basketId);
 
             // return order
             return order;
@@ -66,7 +69,7 @@ namespace Infrastructure.Services
         {
             var spec = new OrdersWithItemsAndOrderingSpecification(id, buyerEmail);
 
-             return await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
+            return await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
         }
 
         public async Task<IReadOnlyList<Order>> GetOrdersForUserAsync(string buyerEmail)

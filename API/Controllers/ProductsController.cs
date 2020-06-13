@@ -34,9 +34,10 @@ namespace API.Controllers
             this.productsRepo = productsRepo;
         }
 
+        [Cached(600)] // Cache auf 10 Minuten setzen
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductToReturnDto>>> GetProducts(
-            [FromQuery]ProductSpecParams productparams)
+                   [FromQuery] ProductSpecParams productparams)
         {
             var spec = new ProductsWithTypesAndBrandsSpecification(productparams);
 
@@ -51,6 +52,7 @@ namespace API.Controllers
             return Ok(new Pagination<ProductToReturnDto>(productparams.PageIndex, productparams.PageSize, totalItems, data));
         }
 
+        [Cached(600)] // Cache auf 10 Minuten setzen
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
@@ -60,17 +62,19 @@ namespace API.Controllers
 
             var product = await productsRepo.GetEntityWithSpec(spec);
 
-            if(product == null) return NotFound(new ApiResponse(404));
+            if (product == null) return NotFound(new ApiResponse(404));
 
             return mapper.Map<Product, ProductToReturnDto>(product);
         }
 
+        [Cached(600)] // Cache auf 10 Minuten setzen
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
         {
             return Ok(await productBrandRepo.ListAllAsync());
         }
 
+        [Cached(600)] // Cache auf 10 Minuten setzen
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
         {

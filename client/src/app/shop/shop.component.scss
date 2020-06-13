@@ -1,8 +1,9 @@
 .list-group-item {
-    background-color:white!important;
+    background-color:white;
     color: rgb(70,70,70)!important;
 }
 
 .list-group :hover {
-    cursor: pointer!important;;
+    cursor: pointer!important;
+    background-color: rgb(230,230,230);
 }
